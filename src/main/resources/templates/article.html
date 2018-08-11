@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章编辑</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-body col-md-10 col-md-offset-1">
+        <form action="/articleAdd"  method = "post">
+            <div class="title option">
+                <h2>
+                    <label>标题</label>
+                </h2>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="row categoryTag">
+                <div class="col-md-6">
+                    <label>分类</label>
+                    <select class="form-control" id="category"  name="category">
+                        <option value="Java">Java</option>
+                        <option value="Web">Web</option>
+                        <option value="Linux">Linux</option>
+                        <option value="分布式系统">分布式系统</option>
+                        <option value="数据库">数据库</option>
+                        <option value="算法">算法</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag"></div>
+            </div>
+            <div class="describe option">
+                <label>摘要</label>
+                <input type="text" class="form-control" id="describe" name="describes">
+            </div>
+            <div class="option" style="margin-bottom:10px;">
+                <label>内容</label>
+                <textarea rows="30" class="form-control" id="content" name="content"></textarea>
+            </div>
+            <button  type="submit" class="btn btn-primary col-md-1 col-md-offset-11">发布</button>
+        </form>
+    </div>
+    <div class="panel-footer col-md-10 col-md-offset-1 text-center">写文章的地方</div>
+    <div class="panel-footer col-md-10 col-md-offset-1 text-center">写文章的地方</div>
+    <div class="panel-footer col-md-10 col-md-offset-1 text-center">写文章的地方</div>
+</div>
+
+</body>
+</html>
