@@ -35,4 +35,15 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return articles;
     }
+    /**
+    * @Description: 根据ID查询文章
+    * @Param: [id]
+    * @return: com.blog.wtk.Model.Article
+    * @Author: Wtk
+    * @Date: 2018/8/11
+    */
+    @Override
+    public Article showById(Integer id) {
+        return  articleMapper.selectByPrimaryKey(id);
+    }
 }

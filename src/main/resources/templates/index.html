@@ -58,7 +58,7 @@
             <!-- List group -->
             <ul class="list-group">
                 <li class="list-group-item" v-for="article in message">
-                    <h3><a href="">{{article.title}}</a> </h3>
+                    <h3><a :href="'show_article?id='+article.id">{{article.title}}</a> </h3>
                     <p>{{article.describes}}</p>
                     <p>{{article.content}}</p>
                     <p>

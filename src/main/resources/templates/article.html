@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>文章编辑</title>
+    <link href="/css/editormd.min.css" rel="stylesheet" type="text/css" />
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/editormd.min.js"></script>
+
 </head>
 <body>
 <div class="panel panel-default">
@@ -41,9 +45,16 @@
                 <label>摘要</label>
                 <input type="text" class="form-control" id="describe" name="describes">
             </div>
-            <div class="option" style="margin-bottom:10px;">
-                <label>内容</label>
-                <textarea rows="30" class="form-control" id="content" name="content"></textarea>
+            <div class="option">
+                    <h2>
+                        <label>内容</label>
+                    </h2>
+                <div class="editormd form-control" id="test-editormd">
+                    <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
+                    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                    <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+                    <textarea class="editormd-html-textarea" name="content" id="editorhtml"></textarea>
+                </div>
             </div>
             <button  type="submit" class="btn btn-primary col-md-1 col-md-offset-11">发布</button>
         </form>
@@ -53,5 +64,35 @@
     <div class="panel-footer col-md-10 col-md-offset-1 text-center">写文章的地方</div>
 </div>
 
+
+<script type="text/javascript">
+    var testEditor;
+
+    testEditor=$(function() {
+        editormd("test-editormd", {
+            width   : "90%",
+            height  : 640,
+            //markdown : md,
+            codeFold : true,
+            syncScrolling : "single",
+            //你的lib目录的路径
+            path    : "/editormd/lib/",
+            imageUpload: false,//关闭图片上传功能
+            /*  theme: "dark",//工具栏主题
+             previewTheme: "dark",//预览主题
+             editorTheme: "pastel-on-dark",//编辑主题 */
+            emoji: false,
+            taskList: true,
+            tocm: true,         // Using [TOCM]
+            tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true,             // 开启流程图支持，默认关闭
+            sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+            //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+            saveHTMLToTextarea : true
+        });
+
+    });
+
+</script>
 </body>
 </html>
