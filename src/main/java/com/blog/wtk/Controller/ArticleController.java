@@ -46,7 +46,6 @@ public class ArticleController {
 
     @RequestMapping(value = "/articleAdd")
     public String Article_Add(Article article){
-
         boolean is_add=articleService.ArticleAdd(article);
         if(is_add){
             System.out.println("文章添加成功");
