@@ -65,6 +65,20 @@
             <artifactId>flexmark-all</artifactId>
             <version>0.26.4</version>
         </dependency>
+         <!--springboot分页插件-->
+        <!--<dependency>-->
+            <!--<groupId>com.github.pagehelper</groupId>-->
+            <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
+            <!--<version>1.1.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+
+            <!--<groupId>com.github.pagehelper</groupId>-->
+
+            <!--<artifactId>pagehelper</artifactId>-->
+            <!--<version>4.1.0</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <build>

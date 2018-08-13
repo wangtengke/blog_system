@@ -1,14 +1,7 @@
 package com.blog.wtk.Mapper;
 
 import com.blog.wtk.Model.Article;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
@@ -67,6 +60,24 @@ public interface ArticleMapper {
             @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR)
     })
     List<Article> selectAll();
+    @Select({
+            "select",
+            "id, title, describes, content, created_date, commentCount, category",
+            "from article",
+            "order by id desc limit #{offset},#{limit}"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="describes", property="describes", jdbcType=JdbcType.VARCHAR),
+            @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
+            @Result(column="created_date", property="createdDate", jdbcType=JdbcType.DATE),
+            @Result(column="commentCount", property="commentcount", jdbcType=JdbcType.INTEGER),
+            @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR)
+    })
+    List<Article> selectLatestArticles(@Param("offset") int offset,@Param("limit") int limit);
+    @Select({"select count(id) from","article"})
+    int getArticleCount();
 
     @UpdateProvider(type=ArticleSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Article record);
@@ -82,4 +93,6 @@ public interface ArticleMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Article record);
+
+
 }

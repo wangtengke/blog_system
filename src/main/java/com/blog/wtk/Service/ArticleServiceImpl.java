@@ -46,4 +46,21 @@ public class ArticleServiceImpl implements ArticleService {
     public Article showById(Integer id) {
         return  articleMapper.selectByPrimaryKey(id);
     }
+
+    /**
+    * @Description: 分页查询
+    * @Param: [offset, limit]
+    * @return: java.util.List<com.blog.wtk.Model.Article>
+    * @Author: Wtk
+    * @Date: 2018/8/13
+    */
+    @Override
+    public List<Article> getLatestArticles(int offset, int limit) {
+       return articleMapper.selectLatestArticles(offset,limit);
+    }
+
+    @Override
+    public int getArticleCount() {
+        return articleMapper.getArticleCount();
+    }
 }

@@ -10,4 +10,8 @@ public interface ArticleService {
     List<Article> getAll();
 
     Article showById(Integer id);
+
+    List<Article> getLatestArticles(int offset, int limit);
+
+    int getArticleCount();
 }

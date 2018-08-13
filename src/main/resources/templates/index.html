@@ -58,7 +58,7 @@
             <!-- List group -->
             <ul class="list-group">
                 <li class="list-group-item" v-for="article in message">
-                    <h3><a :href="'show_article?id='+article.id">{{article.title}}</a> </h3>
+                    <h3><a th:href="@{|/show_article/${article.id}|}">{{article.title}}</a> </h3>
                     <p>{{article.describes}}</p>
                     <p style="margin-top:100px">
                         <span class="glyphicon glyphicon-calendar " aria-hidden="true">{{new Date(article.createdDate).toLocaleDateString()}}</span>
@@ -70,6 +70,25 @@
             </ul>
             <div class="panel-footer">Panel footer</div>
         </div>
+        <!--分页栏-->
+        <div class="col-md-offset-4">
+            <nav aria-label="Page navigation">
+                <ul class="pagination ">
+                    <li>
+                        <a href="" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">{{current}}/{{lastPage}}</a></li>
+                    <li>
+                        <a th:href="@{|/page/${nextPage}|}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
     <div class="col-md-3 right">
         <div>
@@ -135,12 +154,17 @@
 
 <script th:inline="javascript">
     var articles = /*[[${articles}]]*/ {};
-
-    // var articles = `${articles}`;
+    var page=/*[[${page}]]*/ {};
+    var current=/*[[${current}]]*/ {};
+    var lastPage=/*[[${lastPage}]]*/ {};
+    var nextPage=/*[[${lastPage}]]*/ {};
     new Vue({
         el: '#app',
         data: {
-            message: articles
+            message: articles,
+            current:current,
+            nextPage:nextPage,
+            lastPage:lastPage,
         }
     });
 

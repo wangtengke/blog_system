@@ -35,8 +35,16 @@ public class LoginController {
     ArticleServiceImpl articleService;
     @RequestMapping("/")
     public String index(Model model){
-        List<Article> articles=articleService.getAll();
+//        PageHelper.startPage(1,3);
+
+        List<Article> articles = articleService.getLatestArticles(0,4);
+        int count = articleService.getArticleCount();
+        model.addAttribute("current",1);
+        model.addAttribute("nextPage",2);
+        model.addAttribute("lastPage",count/4+1);
+        model.addAttribute("count",count);
         model.addAttribute("articles",articles);
+
         return "index";
     }
 
