@@ -60,6 +60,12 @@ public class ArticleController {
     @RequestMapping(value = "/page/{pageId}")
     public String Page(Model model,@PathVariable("pageId")int pageId){
         List<Article> articles = articleService.getLatestArticles((pageId-1)*4,4);
+        int count = articleService.getArticleCount();
+        model.addAttribute("current",pageId);
+        model.addAttribute("prePage",pageId-1);
+        model.addAttribute("nextPage",pageId+1);
+        model.addAttribute("lastPage",count/4+1);
+        model.addAttribute("count",count);
         model.addAttribute("articles",articles);
 
         return "index";
